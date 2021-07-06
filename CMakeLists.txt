@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project (raytracer VERSION 1.0)
 
-add_executable(raytracer src/main.cpp src/vec3.h src/color.h)
+add_executable(raytracer src/main.cpp )
+target_include_directories(raytracer PUBLIC src)
