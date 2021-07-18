@@ -5,6 +5,7 @@
 #include "sphere.h"
 #include "camera.h"
 #include "vec3.h"
+#include "material.h" // needs to be include after hittable_list.h for now
 
 double hit_sphere(const point3& center, double radius, const ray& r) {
 	vec3 oc = r.origin() - center;
@@ -44,10 +45,14 @@ int main() {
   const int samples_per_pixel = 100;
   const int max_depth = 50;
 	
+  
 	// World
 	hittable_list world;
-	world.add(make_shared<sphere>(point3(0,0,-1), 0.5));
-	world.add(make_shared<sphere>(point3(0,-100.5,-1), 100));
+
+  auto material1 = make_shared<lambertian>(color(0.8, 0.8, 0.0));
+  
+	world.add(make_shared<sphere>(point3(0,0,-1), 0.5, material1));
+	world.add(make_shared<sphere>(point3(0,-100.5,-1), 100, material1));
 
 
 	// Camera
