@@ -18,3 +18,9 @@ set(CMAKE_BUILD_TYPE "Release")
 
 add_executable(raytracer src/main.cpp ${COMMON_ALL})
 target_include_directories(raytracer PUBLIC src)
+
+
+# add_executable(tests src/tests.cpp)
+# target_include_directories(tests PRIVATE include)
+
+
