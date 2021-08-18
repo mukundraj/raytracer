@@ -8,6 +8,13 @@
 #include "material.h" // needs to be include after hittable_list.h for now
 #include "moving_sphere.h"
 
+hittable_list earth(){
+  auto earth_texture = make_shared<image_texture> ("earthmap.jpg");
+  auto earth_surface = make_shared<lambertian> (earth_texture);
+  auto globe = make_shared<sphere> (point3(0,0,0), 2, earth_surface);
+  return hittable_list(globe);
+}
+
 double hit_sphere(const point3& center, double radius, const ray& r) {
 	vec3 oc = r.origin() - center;
 	auto a = r.direction().length_squared();
@@ -163,11 +170,18 @@ int main() {
       vfov = 20.0;
       break;
     
-    default:
     case 3:
       world = two_perlin_spheres();
       lookfrom = point3(13, 2, 3);
       lookat = point3(0, 0, 0);
+      vfov = 20.0;
+      break;
+
+    default:
+    case 4:
+      world = earth();
+      lookfrom = point3(13, 2, 3);
+      lookat = point3(0,0,0);
       vfov = 20.0;
       break;
   }
