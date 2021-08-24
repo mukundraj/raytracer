@@ -46,9 +46,11 @@ bool constant_medium::hit(const ray&r, double t_min, double t_max, hit_record& r
 
   hit_record rec1, rec2;
 
+  // first hit
   if (!boundary->hit(r, -infinity, infinity, rec1))
     return false;
 
+  // second hit
   if (!boundary->hit(r, rec1.t+0.0001, infinity, rec2))
     return false;
 
