@@ -1,10 +1,12 @@
 #ifndef BVH_H
 #define BVH_H
 
+#include <algorithm>
 #include "rtweekend.h"
 
 #include "hittable.h"
 #include "hittable_list.h"
+
 
 
 class bvh_node : public hittable {
@@ -110,6 +112,8 @@ bvh_node::bvh_node(
     if (!left->bounding_box (time0, time1, box_left) 
           || !right->bounding_box(time0, time1, box_right))
              std::cerr<< "No bounding box in bvh_node constructor.\n";
+
+    box = surrounding_box(box_left, box_right);
 }
 
 #endif /* BVH_H */
