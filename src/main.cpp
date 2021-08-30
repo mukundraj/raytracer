@@ -387,7 +387,8 @@ int main() {
       image_width = 500;
       samples_per_pixel = 500;
       background = color(0,0,0);
-      lookfrom = point3(478, 278, -600);
+      // lookfrom = point3(478, 278, -600);
+      lookfrom = point3(200, 600, -100);
       lookat = point3(278, 278, 0);
       vfov = 40.0;
       break;

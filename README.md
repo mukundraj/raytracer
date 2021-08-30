@@ -1,4 +1,8 @@
 # raytracer
 
+An experimental ray tracer to learn and test out various aspects involved in computationally 
+generating photorealistic images.
 
-https://bunjevac.net/2019/02/14/parallelizing-raytracer-in-a-weekend.html
+References:
+
+https://raytracing.github.io/
