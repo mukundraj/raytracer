@@ -11,6 +11,8 @@
 #include "box.h"
 #include "constant_medium.h"
 #include "bvh.h"
+#include "mesh_obj.h"
+#include "scene.h"
 
 
 hittable_list final_scene(){
@@ -282,8 +284,8 @@ int main() {
 	// Image
 	auto aspect_ratio = 16 / 9.0;
 	int image_width = 400;
-  int samples_per_pixel = 50;
-  const int max_depth = 50;
+  int samples_per_pixel = 5;
+  const int max_depth = 5;
 	
   
 	// World

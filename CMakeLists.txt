@@ -8,10 +8,12 @@ project (raytracer VERSION 1.0)
 
 # Source
 set ( COMMON_ALL
-  src/rtweekend.h
-  src/camera.h
-  src/ray.h
-  src/vec3.h
+  # src/rtweekend.h
+  # src/camera.h
+  # src/ray.h
+  # src/vec3.h
+  # src/mesh_obj.h
+  # src/scene.h
 )
 
 set(CMAKE_BUILD_TYPE "Release")
@@ -21,6 +23,6 @@ target_include_directories(raytracer PUBLIC src)
 
 
 # add_executable(tests src/tests.cpp)
-# target_include_directories(tests PRIVATE include)
+## target_include_directories(tests PRIVATE include)
 
 

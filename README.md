@@ -7,3 +7,8 @@ References:
 
 - https://raytracing.github.io/
 - Bly7's object loader https://github.com/Bly7/OBJ-Loader
+
+
+todo: 
+- A lightweight viewer for examining loaded mesh
+
