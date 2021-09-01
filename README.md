@@ -5,4 +5,5 @@ generating photorealistic images.
 
 References:
 
-https://raytracing.github.io/
+- https://raytracing.github.io/
+- Bly7's object loader https://github.com/Bly7/OBJ-Loader
