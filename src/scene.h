@@ -7,10 +7,11 @@
 // #include "../external/OBJ_Loader.h"
 #define TINYOBJLOADER_IMPLEMENTATION // define this in only *one* .cc
 #include "../external/tiny_obj_loader.h"
+#include "triangle.h"
 
 hittable_list get_teapot_scene(std::string teapot_file){
 
-  hittable_list hlist; // list item can also point to a bvh node, and vice versa. Put triangles in a hlist, then hlist to bvh, then to final hlist
+  hittable_list hlist; // list item can also point to a bvh node and vice versa. Put triangles in a hlist, then hlist to bvh, then to final hlist
 
   std::string inputfile = "./assets/teapot.obj";
   tinyobj::ObjReaderConfig reader_config;
@@ -36,12 +37,17 @@ hittable_list get_teapot_scene(std::string teapot_file){
   std::cout<<"num shapes "<< shapes.size()<<std::endl;
   // Loop over shapes
   for (size_t s = 0; s < shapes.size(); s++) {
+
+    hittable_list cur_hlist;
     // Loop over faces(polygon)
     size_t index_offset = 0;
     for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
       size_t fv = size_t(shapes[s].mesh.num_face_vertices[f]);
 
       assert(fv==3);
+
+      vec3 verts[3];
+      double scale = 1.0;
       // Loop over vertices in the face.
       for (size_t v = 0; v < fv; v++) {
         // access to vertex
@@ -49,6 +55,8 @@ hittable_list get_teapot_scene(std::string teapot_file){
         tinyobj::real_t vx = attrib.vertices[3*size_t(idx.vertex_index)+0];
         tinyobj::real_t vy = attrib.vertices[3*size_t(idx.vertex_index)+1];
         tinyobj::real_t vz = attrib.vertices[3*size_t(idx.vertex_index)+2];
+
+
 
         // Check if `normal_index` is zero or positive. negative = no normal data
         if (idx.normal_index >= 0) {
@@ -62,7 +70,7 @@ hittable_list get_teapot_scene(std::string teapot_file){
           tinyobj::real_t tx = attrib.texcoords[2*size_t(idx.texcoord_index)+0];
           tinyobj::real_t ty = attrib.texcoords[2*size_t(idx.texcoord_index)+1];
         }
-
+        verts[v] = vec3(scale*vx, scale*vy, scale*vz);
         // Optional: vertex colors
         // tinyobj::real_t red   = attrib.colors[3*size_t(idx.vertex_index)+0];
         // tinyobj::real_t green = attrib.colors[3*size_t(idx.vertex_index)+1];
@@ -72,7 +80,15 @@ hittable_list get_teapot_scene(std::string teapot_file){
 
       // per-face material
       shapes[s].mesh.material_ids[f];
+      
+      auto mat = make_shared<lambertian>(color(0.48, 0.83, 0.53));
+      vec3 nn = cross(verts[1]-verts[0], verts[2]-verts[0]);
+      auto tri = make_shared<triangle> (verts[0], verts[1], verts[2], nn, mat, scale);
+      cur_hlist.add(tri);
     }
+
+    hlist.add(make_shared<bvh_node>(cur_hlist, 0, 1));
+
   }
 
 
