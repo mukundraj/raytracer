@@ -6,8 +6,7 @@ generating photorealistic images.
 References:
 
 - https://raytracing.github.io/
-- Bly7's object loader https://github.com/Bly7/OBJ-Loader
-
+- tinyobjloader for reading obj files https://github.com/tinyobjloader/tinyobjloader
 
 todo: 
 - A lightweight viewer for examining loaded mesh

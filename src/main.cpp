@@ -382,7 +382,6 @@ int main() {
       break;
 
 
-    default:
     case 8:
       world = final_scene();
       aspect_ratio = 1.0;
@@ -393,6 +392,13 @@ int main() {
       lookfrom = point3(200, 600, -100);
       lookat = point3(278, 278, 0);
       vfov = 40.0;
+      break;
+
+    default:
+    case 9:
+      std::string teapot_file = "./assets/plane.obj";
+      world = get_teapot_scene(teapot_file);
+      exit(0);
       break;
   }
 
