@@ -55,6 +55,7 @@ class vec3 {
 
     public:
         double e[3];
+        double uv[2];
 
      inline static vec3 random() {
         return vec3(random_double(), random_double(), random_double());
@@ -62,6 +63,14 @@ class vec3 {
 
     inline static vec3 random(double min, double max) {
         return vec3(random_double(min,max), random_double(min,max), random_double(min,max));
+    }
+
+    inline float u() const{
+        return uv[0];
+    }
+
+    inline float v() const{
+        return uv[1];
     }
 };
 
